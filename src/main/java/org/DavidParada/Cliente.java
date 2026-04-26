@@ -1,6 +1,9 @@
 package org.DavidParada;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
@@ -25,8 +28,7 @@ class Cliente {
 
                         if (msg.startsWith("MSG|")) {
                             System.out.println("\nSERVIDOR: " + msg.substring(4));
-                        }
-                        else if (msg.startsWith("DATA|")) {
+                        } else if (msg.startsWith("DATA|")) {
                             Instant instanteRecibido = Instant.now();
                             String contenido = msg.substring(5);
                             String[] partes = contenido.split("\\|");

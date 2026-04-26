@@ -1,6 +1,9 @@
 package org.DavidParada;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
@@ -46,7 +49,7 @@ class HiloCliente extends Thread {
                 long tiempoProc = Duration.between(inicioProc, finProc).toNanos();
                 tiempoTotalProcesamiento += tiempoProc;
                 totalMensajes++;
-                salida.println("DATA|RESPUESTA=" + respuesta +"|TIEMPO_PROCESAMIENTO_NANOSEGUNDOS=" + tiempoProc);
+                salida.println("DATA|RESPUESTA=" + respuesta + "|TIEMPO_PROCESAMIENTO_NANOSEGUNDOS=" + tiempoProc);
             }
 
         } catch (IOException e) {
@@ -70,7 +73,8 @@ class HiloCliente extends Thread {
                 socket.close();
             }
             System.out.println(nombre + " se ha desconectado");
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+        }
     }
 
     private void mostrarResumen() {
@@ -85,6 +89,6 @@ class HiloCliente extends Thread {
             double promedio = (tiempoTotalProcesamiento / (double) totalMensajes) / 1000.0;
             System.out.println("Tiempo promedio de procesamiento (microsegundos): " + promedio);
         }
-        System.out.println("_".repeat(50)+"\n");
+        System.out.println("_".repeat(50) + "\n");
     }
 }
